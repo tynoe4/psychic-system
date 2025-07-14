@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tinotenda Mandeya - Portfolio</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<style id="preloader-styles">
+.preloader {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #0f172a;
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 9999;
+transition: opacity 0.5s, visibility 0.5s;
+}
+.preloader.fade-out {
+opacity: 0;
+visibility: hidden;
+}
+.loader {
+position: relative;
+width: 120px;
+height: 120px;
+}
+.loader-circle {
+position: absolute;
+width: 100%;
+height: 100%;
+border: 4px solid transparent;
+border-radius: 50%;
+animation: rotate 2s linear infinite;
+}
+.loader-circle:nth-child(1) {
+border-top-color: #6366f1;
+animation-delay: 0s;
+}
+.loader-circle:nth-child(2) {
+border-right-color: #a855f7;
+animation-delay: 0.5s;
+}
+.loader-circle:nth-child(3) {
+border-bottom-color: #6366f1;
+animation-delay: 1s;
+}
+.loader-text {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 1.2rem;
+font-weight: 600;
+color: white;
+white-space: nowrap;
+}
+@keyframes rotate {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+</style>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#6366f1',secondary:'#a855f7'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+:root {
+--primary-gradient: linear-gradient(135deg, #6366f1, #a855f7);
+--secondary-gradient: linear-gradient(135deg, #4f46e5, #8b5cf6);
+}
+body {
+font-family: 'Inter', sans-serif;
+overflow-x: hidden;
+background-color: #0f172a;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: 'Space Grotesk', sans-serif;
+}
+.hero-text {
+background: var(--primary-gradient);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+.glass-nav {
+background: rgba(15, 23, 42, 0.7);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.nav-item {
+position: relative;
+transition: transform 0.3s;
+}
+.nav-item:hover {
+transform: translateY(-2px);
+}
+.nav-item::after {
+content: '';
+position: absolute;
+bottom: -4px;
+left: 0;
+width: 0;
+height: 2px;
+background: var(--primary-gradient);
+transition: width 0.3s;
+}
+.nav-item:hover::after {
+width: 100%;
+}
+.active-nav::after {
+width: 100%;
+}
+.hero-particles {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+}
+.cta-button {
+background: var(--primary-gradient);
+transition: all 0.3s;
+}
+.cta-button:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+.section-title {
+position: relative;
+display: inline-block;
+}
+.section-title::after {
+content: '';
+position: absolute;
+bottom: -8px;
+left: 0;
+width: 60px;
+height: 3px;
+background: var(--primary-gradient);
+}
+.project-card {
+perspective: 1000px;
+transition: transform 0.5s;
+}
+.project-card:hover {
+transform: translateY(-10px);
+}
+.project-card-inner {
+position: relative;
+width: 100%;
+height: 100%;
+transition: transform 0.8s;
+transform-style: preserve-3d;
+}
+.project-card:hover .project-card-inner {
+transform: rotateY(180deg);
+}
+.project-card-front, .project-card-back {
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+border-radius: 8px;
+}
+.project-card-back {
+transform: rotateY(180deg);
+background: var(--secondary-gradient);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 1.5rem;
+}
+.skill-progress {
+position: relative;
+width: 100%;
+height: 8px;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 4px;
+overflow: hidden;
+}
+.skill-progress-bar {
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+background: var(--primary-gradient);
+border-radius: 4px;
+transition: width 1s ease-in-out;
+}
+.skill-icon {
+transition: transform 0.3s;
+}
+.skill-icon:hover {
+transform: scale(1.2);
+}
+.contact-form input, .contact-form textarea {
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid rgba(255, 255, 255, 0.1);
+transition: all 0.3s;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+background: rgba(255, 255, 255, 0.1);
+border-color: #6366f1;
+box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+.social-icon {
+transition: all 0.3s;
+}
+.social-icon:hover {
+transform: translateY(-5px);
+color: #6366f1;
+}
+.back-to-top {
+position: fixed;
+bottom: 30px;
+right: 30px;
+background: var(--primary-gradient);
+border-radius: 50%;
+width: 50px;
+height: 50px;
+display: flex;
+justify-content: center;
+align-items: center;
+color: white;
+cursor: pointer;
+transition: all 0.3s;
+opacity: 0;
+visibility: hidden;
+z-index: 100;
+}
+.back-to-top.visible {
+opacity: 1;
+visibility: visible;
+}
+.back-to-top:hover {
+transform: translateY(-5px);
+box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+.custom-cursor {
+position: fixed;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: rgba(99, 102, 241, 0.5);
+pointer-events: none;
+transform: translate(-50%, -50%);
+z-index: 9999;
+transition: width 0.3s, height 0.3s, background 0.3s;
+}
+.custom-cursor.active {
+width: 50px;
+height: 50px;
+background: rgba(99, 102, 241, 0.3);
+}
+.custom-cursor-follower {
+position: fixed;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: #6366f1;
+pointer-events: none;
+transform: translate(-50%, -50%);
+z-index: 9999;
+transition: transform 0.1s;
+}
+.wave-separator {
+position: relative;
+height: 100px;
+overflow: hidden;
+}
+.wave-separator svg {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 100px;
+}
+@keyframes floatAnimation {
+0% { transform: translateY(0); }
+50% { transform: translateY(-15px); }
+100% { transform: translateY(0); }
+}
+.float {
+animation: floatAnimation 3s ease-in-out infinite;
+}
+.rotate-3d {
+animation: rotate3d 15s linear infinite;
+transform-style: preserve-3d;
+}
+@keyframes float1 {
+0%, 100% { transform: translate(0, 0) scale(1); }
+25% { transform: translate(20px, -20px) scale(1.05); }
+50% { transform: translate(-10px, 20px) scale(0.95); }
+75% { transform: translate(-20px, -10px) scale(1.02); }
+}
+@keyframes float2 {
+0%, 100% { transform: translate(0, 0) scale(1); }
+25% { transform: translate(-25px, 15px) scale(1.1); }
+50% { transform: translate(15px, -25px) scale(0.9); }
+75% { transform: translate(20px, 20px) scale(1.05); }
+}
+@keyframes float3 {
+0%, 100% { transform: translate(0, 0) scale(1); }
+25% { transform: translate(15px, 25px) scale(0.9); }
+50% { transform: translate(-20px, -15px) scale(1.1); }
+75% { transform: translate(10px, -25px) scale(0.95); }
+}
+.typewriter {
+overflow: hidden;
+border-right: 2px solid #6366f1;
+white-space: nowrap;
+margin: 0 auto;
+animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+@keyframes typing {
+from { width: 0 }
+to { width: 100% }
+}
+@keyframes blink-caret {
+from, to { border-color: transparent }
+50% { border-color: #6366f1 }
+}
+.progress-circle {
+position: relative;
+width: 100px;
+height: 100px;
+}
+.progress-circle svg {
+transform: rotate(-90deg);
+}
+.progress-circle circle {
+fill: none;
+stroke-width: 8;
+stroke-linecap: round;
+stroke: rgba(255, 255, 255, 0.1);
+}
+.progress-circle .progress {
+stroke: url(#gradient);
+stroke-dasharray: 283;
+transition: stroke-dashoffset 1s;
+}
+.tech-cube {
+position: relative;
+width: 200px;
+height: 200px;
+transform-style: preserve-3d;
+animation: rotateCube 20s linear infinite;
+}
+@keyframes rotateCube {
+0% { transform: rotateX(0) rotateY(0); }
+100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+.cube-face {
+position: absolute;
+width: 200px;
+height: 200px;
+background: rgba(255, 255, 255, 0.1);
+border: 1px solid rgba(255, 255, 255, 0.2);
+display: flex;
+justify-content: center;
+align-items: center;
+backface-visibility: hidden;
+}
+.cube-front { transform: translateZ(100px); }
+.cube-back { transform: rotateY(180deg) translateZ(100px); }
+.cube-right { transform: rotateY(90deg) translateZ(100px); }
+.cube-left { transform: rotateY(-90deg) translateZ(100px); }
+.cube-top { transform: rotateX(90deg) translateZ(100px); }
+.cube-bottom { transform: rotateX(-90deg) translateZ(100px); }
+</style>
+</head>
+<body class="text-white">
+<div id="preloader" class="preloader">
+<div class="loader">
+<div class="loader-circle"></div>
+<div class="loader-circle"></div>
+<div class="loader-circle"></div>
+<div class="loader-text">Loading...</div>
+</div>
+</div>
+<div id="custom-cursor" class="custom-cursor"></div>
+<div id="custom-cursor-follower" class="custom-cursor-follower"></div>
+<nav class="glass-nav fixed top-0 left-0 w-full z-50 py-4">
+<div class="container mx-auto px-6 flex justify-between items-center">
+<a href="#" class="text-2xl font-bold text-white">TINOTENDA MANDEYA</a>
+<div class="hidden md:flex space-x-8">
+<a href="#home" class="nav-item active-nav text-white hover:text-primary">Home</a>
+<a href="#about" class="nav-item text-white hover:text-primary">About</a>
+<a href="#projects" class="nav-item text-white hover:text-primary">Projects</a>
+<a href="#skills" class="nav-item text-white hover:text-primary">Skills</a>
+<a href="#contact" class="nav-item text-white hover:text-primary">Contact</a>
+</div>
+<button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-menu-line ri-2x"></i>
+</div>
+</button>
+</div>
+<div id="mobile-menu" class="md:hidden hidden bg-gray-900 py-4">
+<div class="container mx-auto px-6 flex flex-col space-y-4">
+<a href="#home" class="text-white hover:text-primary">Home</a>
+<a href="#about" class="text-white hover:text-primary">About</a>
+<a href="#projects" class="text-white hover:text-primary">Projects</a>
+<a href="#skills" class="text-white hover:text-primary">Skills</a>
+<a href="#contact" class="text-white hover:text-primary">Contact</a>
+</div>
+</div>
+</nav>
+<section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+<canvas id="hero-particles" class="hero-particles"></canvas>
+<div class="container mx-auto px-6 py-20 relative z-10">
+<div class="flex flex-col md:flex-row items-center">
+<div class="md:w-1/2 mb-12 md:mb-0">
+<h1 class="text-4xl md:text-6xl font-bold hero-text mb-6">Tinotenda Mandeya</h1>
+<div class="h-12">
+<p id="typewriter" class="text-xl md:text-2xl text-gray-300 typewriter">BSIT Student | Developer</p>
+</div>
+<p class="text-gray-400 my-6 max-w-lg">Transforming ideas into digital reality through innovative solutions and creative problem-solving.</p>
+<div class="flex space-x-4 mt-8">
+<a href="#projects" class="cta-button px-8 py-3 rounded-button text-white font-medium !rounded-button">View My Work</a>
+<a href="#contact" class="px-8 py-3 border border-primary text-primary hover:bg-primary hover:bg-opacity-10 rounded-button transition duration-300 font-medium !rounded-button whitespace-nowrap">Get In Touch</a>
+</div>
+</div>
+<div class="md:w-1/2 flex justify-center">
+<div id="hero-3d-model" class="float relative w-64 h-64 md:w-80 md:h-80">
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-full opacity-20 blur-xl"></div>
+<div class="relative w-full h-full flex items-center justify-center overflow-hidden rounded-full">
+<img src="img/IMG_20240105_131312_231~2_1.jpg" alt="Profile Image" class="absolute inset-0 w-full h-full object-cover object-center opacity-40 scale-110">
+<div class="geometric-animation relative w-full h-full">
+<div class="sphere sphere-1 absolute w-24 h-24 bg-gradient-to-r from-primary to-secondary rounded-full opacity-80" style="animation: float1 4s ease-in-out infinite"></div>
+<div class="sphere sphere-2 absolute w-16 h-16 bg-gradient-to-r from-secondary to-primary rounded-full opacity-60" style="animation: float2 5s ease-in-out infinite"></div>
+<div class="sphere sphere-3 absolute w-20 h-20 bg-gradient-to-r from-primary/80 to-secondary/80 rounded-full opacity-70" style="animation: float3 6s ease-in-out infinite"></div>
+<div class="geometric-lines absolute inset-0">
+<div class="line-1 absolute w-full h-0.5 bg-gradient-to-r from-primary/20 to-secondary/20 transform rotate-45"></div>
+<div class="line-2 absolute w-full h-0.5 bg-gradient-to-r from-secondary/20 to-primary/20 transform -rotate-45"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+<a href="#about" class="text-white opacity-70 hover:opacity-100 transition">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-arrow-down-line ri-xl"></i>
+</div>
+</a>
+</div>
+</section>
+<div class="wave-separator">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+<path fill="#1e293b" d="M0,64L48,58.7C96,53,192,43,288,48C384,53,480,75,576,80C672,85,768,75,864,64C960,53,1056,43,1152,42.7C1248,43,1344,53,1392,58.7L1440,64L1440,100L1392,100C1344,100,1248,100,1152,100C1056,100,960,100,864,100C768,100,672,100,576,100C480,100,384,100,288,100C192,100,96,100,48,100L0,100Z"></path>
+</svg>
+</div>
+<section id="about" class="py-20 bg-gradient-to-b from-[#1e293b] to-[#0f172a]">
+<div class="container mx-auto px-6">
+<h2 class="section-title text-3xl md:text-4xl font-bold text-white mb-16 text-center">About Me</h2>
+<div class="flex flex-col md:flex-row items-center">
+<div class="md:w-2/5 mb-12 md:mb-0">
+<div class="relative w-64 h-64 mx-auto float">
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-xl opacity-20 blur-xl"></div>
+<div class="relative w-full h-full bg-gray-800 rounded-xl overflow-hidden">
+<img src="img/IMG_20240105_131312_231~2_1.jpg" alt="Tinotenda Mandeya" class="w-full h-full object-cover object-top">
+</div>
+</div>
+</div>
+<div class="md:w-3/5 md:pl-12">
+<h3 class="text-2xl font-bold text-white mb-4">Tinotenda Mandeya</h3>
+<p class="text-gray-300 mb-6">I am a passionate BSIT student at Chinhoyi University of Technology, dedicated to exploring the intersection of technology and creative problem-solving.</p>
+<p class="text-gray-400 mb-8">My journey in technology began with a curiosity about how digital systems work and has evolved into a focused pursuit of expertise in software development, web technologies, and IT infrastructure. I believe in creating solutions that not only solve problems but also enhance user experiences.</p>
+<div class="grid grid-cols-2 gap-6 mb-8">
+<div>
+<p class="text-gray-300 font-medium">Name:</p>
+<p class="text-gray-400">Tinotenda Mandeya</p>
+</div>
+<div>
+<p class="text-gray-300 font-medium">Email:</p>
+<p class="text-gray-400">www.tynoe4@gmail.com</p>
+</div>
+<div>
+<p class="text-gray-300 font-medium">Study:</p>
+<p class="text-gray-400">BSIT, Chinhoyi University</p>
+</div>
+<div>
+<p class="text-gray-300 font-medium">Location:</p>
+<p class="text-gray-400">Chinhoyi, Zimbabwe</p>
+</div>
+</div>
+<a href="#" id="download-cv-btn" class="cta-button px-8 py-3 rounded-button text-white font-medium inline-block !rounded-button whitespace-nowrap">Download CV</a>
+<div id="cv-download-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+<div class="bg-gray-900 rounded-lg max-w-md w-full mx-4 p-6">
+<div id="download-start" class="space-y-4">
+<h3 class="text-xl font-bold text-white text-center">Download Resume (PDF)</h3>
+<!-- Hidden direct download link for triggering download -->
+<a id="hidden-cv-link" href="assets/MANDEYA%20TINOTENDA%20CV...pdf" download="MANDEYA TINOTENDA CV.pdf" style="display:none;"></a>
+<p class="text-gray-300 text-center">Click below to download Tinotenda's CV in PDF format</p>
+<div class="flex justify-center">
+<button id="start-download-btn" class="cta-button px-8 py-3 rounded-button text-white font-medium !rounded-button whitespace-nowrap">
+<div class="flex items-center space-x-2">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-download-line"></i>
+</div>
+<span>
+    <a href="assets/MANDEYA%20TINOTENDA%20CV...pdf" download="MANDEYA TINOTENDA CV.pdf" class="outline-none focus:ring-0" style="all:unset;cursor:pointer;">Download PDF</a>
+</span>
+</div>
+</button>
+</div>
+</div>
+<div id="download-progress" class="space-y-4 hidden">
+<h3 class="text-xl font-bold text-white text-center">Downloading...</h3>
+<div class="w-full bg-gray-700 rounded-full h-2">
+<div id="progress-bar" class="bg-primary h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+</div>
+<p id="progress-text" class="text-gray-300 text-center">0%</p>
+</div>
+<div id="download-complete" class="space-y-4 hidden">
+<div class="flex justify-center text-green-400 mb-4">
+<div class="w-12 h-12 flex items-center justify-center">
+<i class="ri-check-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-xl font-bold text-white text-center">Download Complete!</h3>
+<p class="text-gray-300 text-center">Your download has finished successfully</p>
+<div class="flex justify-center">
+<button id="close-modal-btn" class="px-8 py-3 bg-gray-700 text-white rounded-button font-medium hover:bg-gray-600 transition !rounded-button whitespace-nowrap">Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="projects" class="py-20 bg-[#0f172a]">
+<div class="container mx-auto px-6">
+<h2 class="section-title text-3xl md:text-4xl font-bold text-white mb-16 text-center">My Projects</h2>
+<div class="mb-8 flex justify-center">
+<div class="inline-flex bg-gray-800 rounded-full p-1">
+<button class="project-filter active px-4 py-2 rounded-full bg-primary text-white !rounded-full whitespace-nowrap">All</button>
+<button class="project-filter px-4 py-2 rounded-full text-gray-300 hover:text-white !rounded-full whitespace-nowrap">Web</button>
+<button class="project-filter px-4 py-2 rounded-full text-gray-300 hover:text-white !rounded-full whitespace-nowrap">Mobile</button>
+<button class="project-filter px-4 py-2 rounded-full text-gray-300 hover:text-white !rounded-full whitespace-nowrap">UI/UX</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="project-card h-80">
+<div class="project-card-inner h-full">
+<div class="project-card-front bg-gray-800 rounded-lg overflow-hidden h-full">
+<img src="https://readdy.ai/api/search-image?query=modern%20e-commerce%20website%20interface%20on%20computer%20screen%2C%20professional%20UI%20design%2C%20clean%20layout%2C%20product%20showcase%2C%20shopping%20cart%20functionality%2C%20payment%20gateway%20integration%2C%20responsive%20design%20elements%2C%20high-quality%203D%20render&width=600&height=400&seq=2&orientation=landscape" alt="E-commerce Platform" class="w-full h-1/2 object-cover object-top">
+<div class="p-6">
+<h3 class="text-xl font-bold text-white mb-2">E-commerce Platform</h3>
+<p class="text-gray-400 mb-4">A full-featured online shopping platform with secure payment processing.</p>
+<div class="flex space-x-2">
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">React</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">Node.js</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">MongoDB</span>
+</div>
+</div>
+</div>
+<div class="project-card-back">
+<h3 class="text-xl font-bold text-white mb-4">E-commerce Platform</h3>
+<p class="text-white text-center mb-6">Developed a complete e-commerce solution with user authentication, product management, cart functionality, and secure payment processing.</p>
+<div class="flex space-x-4">
+<button id="demo-btn-${index}" class="px-4 py-2 bg-white text-gray-900 rounded-button font-medium hover:bg-opacity-90 transition !rounded-button whitespace-nowrap">View Demo</button>
+<a href="https://github.com/tynoe4" class="px-4 py-2 border border-white text-white rounded-button font-medium hover:bg-white hover:bg-opacity-10 transition !rounded-button whitespace-nowrap">GitHub</a>
+</div>
+</div>
+</div>
+</div>
+<div class="project-card h-80">
+<div class="project-card-inner h-full">
+<div class="project-card-front bg-gray-800 rounded-lg overflow-hidden h-full">
+<img src="https://readdy.ai/api/search-image?query=mobile%20app%20interface%20for%20student%20management%20system%2C%20attendance%20tracking%2C%20grade%20management%2C%20schedule%20viewing%2C%20modern%20UI%20design%20on%20smartphone%20screen%2C%20professional%203D%20render%20with%20dark%20theme&width=600&height=400&seq=3&orientation=landscape" alt="Student Management App" class="w-full h-1/2 object-cover object-top">
+<div class="p-6">
+<h3 class="text-xl font-bold text-white mb-2">Student Management App</h3>
+<p class="text-gray-400 mb-4">Mobile application for university students to manage courses and schedules.</p>
+<div class="flex space-x-2">
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">Flutter</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">Firebase</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">Dart</span>
+</div>
+</div>
+</div>
+<div class="project-card-back">
+<h3 class="text-xl font-bold text-white mb-4">Student Management App</h3>
+<p class="text-white text-center mb-6">Created a cross-platform mobile application that helps university students track assignments, manage course schedules, and receive notifications for important deadlines.</p>
+<div class="flex space-x-4">
+<button id="demo-btn-${index}" class="px-4 py-2 bg-white text-gray-900 rounded-button font-medium hover:bg-opacity-90 transition !rounded-button whitespace-nowrap">View Demo</button>
+<a href="https://github.com/tynoe4" class="px-4 py-2 border border-white text-white rounded-button font-medium hover:bg-white hover:bg-opacity-10 transition !rounded-button whitespace-nowrap">GitHub</a>
+</div>
+</div>
+</div>
+</div>
+<div class="project-card h-80">
+<div class="project-card-inner h-full">
+<div class="project-card-front bg-gray-800 rounded-lg overflow-hidden h-full">
+<img src="https://readdy.ai/api/search-image?query=modern%20dashboard%20UI%20design%20with%20data%20visualization%2C%20analytics%20charts%2C%20user%20statistics%2C%20dark%20theme%20interface%2C%20professional%203D%20render%20of%20admin%20panel%20on%20computer%20screen&width=600&height=400&seq=4&orientation=landscape" alt="Analytics Dashboard" class="w-full h-1/2 object-cover object-top">
+<div class="p-6">
+<h3 class="text-xl font-bold text-white mb-2">Analytics Dashboard</h3>
+<p class="text-gray-400 mb-4">Interactive data visualization dashboard for business metrics.</p>
+<div class="flex space-x-2">
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">Vue.js</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">D3.js</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">Express</span>
+</div>
+</div>
+</div>
+<div class="project-card-back">
+<h3 class="text-xl font-bold text-white mb-4">Analytics Dashboard</h3>
+<p class="text-white text-center mb-6">Designed and implemented a responsive analytics dashboard with real-time data visualization, customizable widgets, and exportable reports.</p>
+<div class="flex space-x-4">
+<button id="demo-btn-${index}" class="px-4 py-2 bg-white text-gray-900 rounded-button font-medium hover:bg-opacity-90 transition !rounded-button whitespace-nowrap">View Demo</button>
+<a href="https://github.com/tynoe4" class="px-4 py-2 border border-white text-white rounded-button font-medium hover:bg-white hover:bg-opacity-10 transition !rounded-button whitespace-nowrap">GitHub</a>
+</div>
+</div>
+</div>
+</div>
+<div class="project-card h-80">
+<div class="project-card-inner h-full">
+<div class="project-card-front bg-gray-800 rounded-lg overflow-hidden h-full">
+<img src="https://readdy.ai/api/search-image?query=modern%20chat%20application%20interface%20with%20message%20bubbles%2C%20user%20profiles%2C%20typing%20indicators%2C%20emoji%20selector%2C%20dark%20theme%20UI%20on%20multiple%20devices%2C%20professional%203D%20render&width=600&height=400&seq=5&orientation=landscape" alt="Real-time Chat App" class="w-full h-1/2 object-cover object-top">
+<div class="p-6">
+<h3 class="text-xl font-bold text-white mb-2">VCP platform</h3>
+<p class="text-gray-400 mb-4">Instant messaging application with real-time updates and file sharing.</p>
+<div class="flex space-x-2">
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">HTML</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">CSS</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">JavaScript</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">PHP</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">MySQL</span>
+</div>
+</div>
+</div>
+<div class="project-card-back">
+<h3 class="text-xl font-bold text-white mb-4">VCP platform</h3>
+<p class="text-white text-center mb-6">Built a responsive chat application featuring real-time messaging, typing indicators, read receipts, and secure file sharing capabilities.</p>
+<div class="flex space-x-4">
+<button id="demo-btn-${index}" class="px-4 py-2 bg-white text-gray-900 rounded-button font-medium hover:bg-opacity-90 transition !rounded-button whitespace-nowrap">View Demo</button>
+<a href="https://github.com/tynoe4" class="px-4 py-2 border border-white text-white rounded-button font-medium hover:bg-white hover:bg-opacity-10 transition !rounded-button whitespace-nowrap">GitHub</a>
+</div>
+</div>
+</div>
+</div>
+<div class="project-card h-80">
+<div class="project-card-inner h-full">
+<div class="project-card-front bg-gray-800 rounded-lg overflow-hidden h-full">
+<img src="https://readdy.ai/api/search-image?query=fitness%20tracking%20app%20interface%20on%20smartphone%2C%20workout%20plans%2C%20progress%20charts%2C%20nutrition%20tracking%2C%20step%20counter%2C%20modern%20UI%20design%20with%20dark%20theme%2C%20professional%203D%20render&width=600&height=400&seq=6&orientation=landscape" alt="Fitness Tracker" class="w-full h-1/2 object-cover object-top">
+<div class="p-6">
+<h3 class="text-xl font-bold text-white mb-2">Fitness Tracker</h3>
+<p class="text-gray-400 mb-4">Mobile app for tracking workouts, nutrition, and fitness progress.</p>
+<div class="flex space-x-2">
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">React Native</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">Redux</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">Firebase</span>
+</div>
+</div>
+</div>
+<div class="project-card-back">
+<h3 class="text-xl font-bold text-white mb-4">Fitness Tracker</h3>
+<p class="text-white text-center mb-6">Developed a comprehensive fitness tracking application with custom workout plans, progress visualization, nutrition logging, and social sharing features.</p>
+<div class="flex space-x-4">
+<button id="demo-btn-${index}" class="px-4 py-2 bg-white text-gray-900 rounded-button font-medium hover:bg-opacity-90 transition !rounded-button whitespace-nowrap">View Demo</button>
+<a href="https://github.com/tynoe4" class="px-4 py-2 border border-white text-white rounded-button font-medium hover:bg-white hover:bg-opacity-10 transition !rounded-button whitespace-nowrap">GitHub</a>
+</div>
+</div>
+</div>
+</div>
+<div class="project-card h-80">
+<div class="project-card-inner h-full">
+<div class="project-card-front bg-gray-800 rounded-lg overflow-hidden h-full">
+<img src="https://readdy.ai/api/search-image?query=portfolio%20website%20design%20mockup%2C%20creative%20layout%20with%20project%20showcases%2C%20about%20section%2C%20skills%20visualization%2C%20contact%20form%2C%20dark%20theme%20with%20accent%20colors%2C%20professional%203D%20render%20on%20multiple%20devices&width=600&height=400&seq=7&orientation=landscape" alt="Portfolio Website" class="w-full h-1/2 object-cover object-top">
+<div class="p-6">
+<h3 class="text-xl font-bold text-white mb-2">Portfolio Website</h3>
+<p class="text-gray-400 mb-4">Personal portfolio website with 3D animations and interactive elements.</p>
+<div class="flex space-x-2">
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">Bootstrap</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">JavaScript</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">HTML/CSS</span>
+<span class="px-2 py-1 bg-gray-700 rounded-full text-xs text-gray-300">Formspree</span>
+</div>
+</div>
+</div>
+<div class="project-card-back">
+<h3 class="text-xl font-bold text-white mb-4">Portfolio Website</h3>
+<p class="text-white text-center mb-6">Created a modern portfolio website featuring 3D animations, interactive project showcases, and smooth scrolling effects to highlight professional skills and achievements.</p>
+<div class="flex space-x-4">
+<button id="demo-btn-${index}" class="px-4 py-2 bg-white text-gray-900 rounded-button font-medium hover:bg-opacity-90 transition !rounded-button whitespace-nowrap">View Demo</button>
+<a href="https://github.com/tynoe4" class="px-4 py-2 border border-white text-white rounded-button font-medium hover:bg-white hover:bg-opacity-10 transition !rounded-button whitespace-nowrap">GitHub</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="wave-separator">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+<path fill="#1e293b" d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,64C960,75,1056,85,1152,85.3C1248,85,1344,75,1392,69.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+</svg>
+</div>
+<section id="skills" class="py-20 bg-gradient-to-b from-[#1e293b] to-[#0f172a]">
+<div class="container mx-auto px-6">
+<h2 class="section-title text-3xl md:text-4xl font-bold text-white mb-16 text-center">Skills & Technologies</h2>
+<div class="flex flex-col md:flex-row items-center mb-20">
+<div class="md:w-1/2 mb-12 md:mb-0">
+<div class="tech-cube-container flex justify-center">
+<div class="tech-cube">
+<div class="cube-face cube-front">
+<div class="w-12 h-12 flex items-center justify-center">
+<i class="ri-html5-fill ri-3x text-[#e34f26]"></i>
+</div>
+</div>
+<div class="cube-face cube-back">
+<div class="w-12 h-12 flex items-center justify-center">
+<i class="ri-css3-fill ri-3x text-[#1572b6]"></i>
+</div>
+</div>
+<div class="cube-face cube-right">
+<div class="w-12 h-12 flex items-center justify-center">
+<i class="ri-javascript-fill ri-3x text-[#f7df1e]"></i>
+</div>
+</div>
+<div class="cube-face cube-left">
+<div class="w-12 h-12 flex items-center justify-center">
+<i class="ri-reactjs-fill ri-3x text-[#61dafb]"></i>
+</div>
+</div>
+<div class="cube-face cube-top">
+<div class="w-12 h-12 flex items-center justify-center">
+<i class="ri-nodejs-fill ri-3x text-[#339933]"></i>
+</div>
+</div>
+<div class="cube-face cube-bottom">
+<div class="w-12 h-12 flex items-center justify-center">
+<i class="ri-database-2-fill ri-3x text-[#4db33d]"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md:w-1/2 md:pl-12">
+<h3 class="text-2xl font-bold text-white mb-6">Technical Proficiency</h3>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300">Frontend Development</span>
+<span class="text-primary">80%</span>
+</div>
+<div class="skill-progress">
+<div class="skill-progress-bar" style="width: 80%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300">UI/UX Design</span>
+<span class="text-primary">85%</span>
+</div>
+<div class="skill-progress">
+<div class="skill-progress-bar" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300">Mobile App Development</span>
+<span class="text-primary">44%</span>
+</div>
+<div class="skill-progress">
+<div class="skill-progress-bar" style="width: 44%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300">UI/UX Design</span>
+<span class="text-primary">85%</span>
+</div>
+<div class="skill-progress">
+<div class="skill-progress-bar" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300">Database Management</span>
+<span class="text-primary">60%</span>
+</div>
+<div class="skill-progress">
+<div class="skill-progress-bar" style="width: 60%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+<div class="bg-gray-800 rounded-lg p-6 text-center transform hover:scale-105 transition duration-300">
+<div class="skill-icon w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+<i class="ri-html5-fill ri-3x text-[#e34f26]"></i>
+</div>
+<h4 class="text-lg font-medium text-white mb-2">HTML</h4>
+<p class="text-gray-400 text-sm">Semantic markup, accessibility, modern features</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-6 text-center transform hover:scale-105 transition duration-300">
+<div class="skill-icon w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+<i class="ri-css3-fill ri-3x text-[#1572b6]"></i>
+</div>
+<h4 class="text-lg font-medium text-white mb-2">CSS</h4>
+<p class="text-gray-400 text-sm">Flexbox, Grid, Animations, Responsive design</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-6 text-center transform hover:scale-105 transition duration-300">
+<div class="skill-icon w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+<i class="ri-javascript-fill ri-3x text-[#f7df1e]"></i>
+</div>
+<h4 class="text-lg font-medium text-white mb-2">JavaScript</h4>
+<p class="text-gray-400 text-sm">ES6+, DOM manipulation, Async programming</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-6 text-center transform hover:scale-105 transition duration-300">
+<div class="skill-icon w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+<i class="ri-reactjs-fill ri-3x text-[#61dafb]"></i>
+</div>
+<h4 class="text-lg font-medium text-white mb-2">React</h4>
+<p class="text-gray-400 text-sm">Hooks, Context API, Redux, React Router</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-6 text-center transform hover:scale-105 transition duration-300">
+<div class="skill-icon w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+<i class="ri-nodejs-fill ri-3x text-[#339933]"></i>
+</div>
+<h4 class="text-lg font-medium text-white mb-2">Node.js</h4>
+<p class="text-gray-400 text-sm">Express, RESTful APIs, Authentication</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-6 text-center transform hover:scale-105 transition duration-300">
+<div class="skill-icon w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+<i class="ri-database-2-fill ri-3x text-[#4db33d]"></i>
+</div>
+<h4 class="text-lg font-medium text-white mb-2">MongoDB</h4>
+<p class="text-gray-400 text-sm">Schema design, CRUD operations, Aggregation</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-6 text-center transform hover:scale-105 transition duration-300">
+<div class="skill-icon w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+<i class="ri-flutter-fill ri-3x text-[#02569b]"></i>
+</div>
+<h4 class="text-lg font-medium text-white mb-2">Flutter</h4>
+<p class="text-gray-400 text-sm">Cross-platform mobile app development, Dart</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-6 text-center transform hover:scale-105 transition duration-300">
+<div class="skill-icon w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+<i class="ri-github-fill ri-3x text-white"></i>
+</div>
+<h4 class="text-lg font-medium text-white mb-2">Git & GitHub</h4>
+<p class="text-gray-400 text-sm">Version control, Collaboration, CI/CD</p>
+</div>
+</div>
+</div>
+</section>
+<div class="wave-separator">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+<path fill="#1e293b" d="M0,64L48,58.7C96,53,192,43,288,48C384,53,480,75,576,80C672,85,768,75,864,64C960,53,1056,43,1152,42.7C1248,43,1344,53,1392,58.7L1440,64L1440,100L1392,100C1344,100,1248,100,1152,100C1056,100,960,100,864,100C768,100,672,100,576,100C480,100,384,100,288,100C192,100,96,100,48,100L0,100Z"></path>
+</svg>
+</div>
+<section id="contact" class="py-20 bg-gradient-to-b from-[#1e293b] to-[#0f172a]">
+<div class="container mx-auto px-6">
+<h2 class="section-title text-3xl md:text-4xl font-bold text-white mb-16 text-center">Get In Touch</h2>
+<div class="flex flex-col md:flex-row">
+<div class="md:w-1/2 mb-12 md:mb-0">
+<div class="bg-gray-800 rounded-lg p-8 h-full">
+<h3 class="text-2xl font-bold text-white mb-6">Contact Information</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-map-pin-line ri-lg text-primary"></i>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-medium text-white mb-1">Location</h4>
+<p class="text-gray-400">Harare, Zimbabwe</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-mail-line ri-lg text-primary"></i>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-medium text-white mb-1">Email</h4>
+<p class="text-gray-400">www.tynoe4@gmail.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-phone-line ri-lg text-primary"></i>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-medium text-white mb-1">Phone</h4>
+<p class="text-gray-400">+263 77100 9436
+</div>
+</div>
+</div>
+<div class="mt-12">
+<h4 class="text-lg font-medium text-white mb-4">Connect With Me</h4>
+<div class="flex space-x-4">
+<a href="https://github.com/tynoe4" class="social-icon w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-300 hover:text-white">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-github-fill"></i>
+</div>
+</a>
+<a href="#" class="social-icon w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-300 hover:text-white">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-linkedin-fill"></i>
+</div>
+</a>
+<a href="https://wa.me/263710272152" class="social-icon w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-300 hover:text-white" aria-label="WhatsApp">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-whatsapp-fill"></i>
+</div>
+</a>
+<a href="https://instagram.com/t._y._n._o._e" class="social-icon w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-300 hover:text-white">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-instagram-fill"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="md:w-1/2 md:pl-8">
+<div class="bg-gray-800 rounded-lg p-8">
+<h3 class="text-2xl font-bold text-white mb-6">Send Me a Message</h3>
+<form id="contact-form" class="contact-form space-y-6" action="https://formspree.io/f/xrblzyrp" method="POST">
+<div>
+<label for="name" class="block text-gray-300 mb-2">Your Name</label>
+<input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-primary outline-none bg-gray-700 text-white" required>
+</div>
+<div>
+<label for="email" class="block text-gray-300 mb-2">Your Email</label>
+<input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-primary outline-none bg-gray-700 text-white" required>
+</div>
+<div>
+<label for="subject" class="block text-gray-300 mb-2">Subject</label>
+<input type="text" id="subject" name="subject" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-primary outline-none bg-gray-700 text-white" required>
+</div>
+<div>
+<label for="message" class="block text-gray-300 mb-2">Your Message</label>
+<textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg border-none focus:ring-2 focus:ring-primary outline-none bg-gray-700 text-white resize-none" required></textarea>
+</div>
+<button type="submit" id="submit-button" class="cta-button px-8 py-3 rounded-button text-white font-medium w-full !rounded-button whitespace-nowrap">
+<span id="button-text">Send Message</span>
+<span id="button-loading" class="hidden">
+<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+</svg>
+</span>
+</button>
+</form>
+<div id="success-message" class="hidden mt-6 p-4 bg-green-500 bg-opacity-20 border border-green-500 rounded-lg">
+<p class="text-green-400 text-center">Your message has been sent successfully! I'll get back to you soon.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="py-12 bg-[#0f172a] relative">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<div class="mb-8 md:mb-0">
+<h3 class="text-2xl font-bold text-white mb-4">Tinotenda Mandeya</h3>
+<p class="text-gray-400 max-w-md">BSIT student at Chinhoyi University of Technology, passionate about creating innovative digital solutions.</p>
+</div>
+<div class="flex flex-col items-center md:items-end">
+<div class="flex space-x-4 mb-6">
+<a href="https://github.com/tynoe4" class="social-icon w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-github-fill"></i>
+</div>
+</a>
+<a href="#" class="social-icon w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-linkedin-fill"></i>
+</div>
+</a>
+<a href="https://wa.me/263710272152" class="social-icon w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-whatsapp-fill"></i>
+</div>
+</a>
+<a href="https://instagram.com/t._y._n._o._e" class="social-icon w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-instagram-fill"></i>
+</div>
+</a>
+</div>
+<p class="text-gray-500">© 2025 Tinotenda Mandeya. All rights reserved.</p>
+</div>
+</div>
+</div>
+<div id="back-to-top" class="back-to-top">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-arrow-up-line"></i>
+</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.159.0/three.min.js"></script>
+<script id="particles-animation">
+window.addEventListener('load', function() {
+const preloader = document.getElementById('preloader');
+setTimeout(() => {
+preloader.classList.add('fade-out');
+setTimeout(() => {
+preloader.style.display = 'none';
+}, 500);
+}, 1500);
+const canvas = document.getElementById('hero-particles');
+if (!canvas) return;
+const renderer = new THREE.WebGLRenderer({
+canvas,
+alpha: true
+});
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 5;
+const particles = new THREE.Group();
+scene.add(particles);
+const particleCount = 100;
+const particleGeometry = new THREE.SphereGeometry(0.05, 16, 16);
+for (let i = 0; i < particleCount; i++) {
+const material = new THREE.MeshBasicMaterial({
+color: new THREE.Color(
+0.5 + Math.random() * 0.5,
+0.5 + Math.random() * 0.5,
+0.9 + Math.random() * 0.1
+),
+transparent: true,
+opacity: 0.3 + Math.random() * 0.7
+});
+const particle = new THREE.Mesh(particleGeometry, material);
+const x = (Math.random() - 0.5) * 10;
+const y = (Math.random() - 0.5) * 10;
+const z = (Math.random() - 0.5) * 10;
+particle.position.set(x, y, z);
+particle.userData = {
+velocity: new THREE.Vector3(
+(Math.random() - 0.5) * 0.01,
+(Math.random() - 0.5) * 0.01,
+(Math.random() - 0.5) * 0.01
+),
+initialPosition: new THREE.Vector3(x, y, z)
+};
+particles.add(particle);
+}
+function resizeRendererToDisplaySize(renderer) {
+const canvas = renderer.domElement;
+const width = canvas.clientWidth;
+const height = canvas.clientHeight;
+const needResize = canvas.width !== width || canvas.height !== height;
+if (needResize) {
+renderer.setSize(width, height, false);
+camera.aspect = width / height;
+camera.updateProjectionMatrix();
+}
+return needResize;
+}
+function animate() {
+requestAnimationFrame(animate);
+resizeRendererToDisplaySize(renderer);
+particles.children.forEach(particle => {
+particle.position.add(particle.userData.velocity);
+// Boundary check and bounce
+['x', 'y', 'z'].forEach(axis => {
+if (Math.abs(particle.position[axis] - particle.userData.initialPosition[axis]) > 2) {
+particle.userData.velocity[axis] *= -1;
+}
+});
+particle.rotation.x += 0.01;
+particle.rotation.y += 0.01;
+});
+particles.rotation.y += 0.001;
+renderer.render(scene, camera);
+}
+animate();
+// Handle window resize
+window.addEventListener('resize', () => {
+camera.aspect = window.innerWidth / window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth, window.innerHeight);
+});
+});
+</script>
+<script id="navigation-script">
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile menu toggle
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+if (mobileMenuButton && mobileMenu) {
+mobileMenuButton.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+});
+}
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+mobileMenu.classList.add('hidden');
+}
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+}
+});
+});
+// Active navigation item based on scroll position
+const sections = document.querySelectorAll('section');
+const navItems = document.querySelectorAll('.nav-item');
+function setActiveNavItem() {
+let currentSection = '';
+sections.forEach(section => {
+const sectionTop = section.offsetTop - 100;
+const sectionHeight = section.offsetHeight;
+if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+currentSection = section.getAttribute('id');
+}
+});
+navItems.forEach(item => {
+item.classList.remove('active-nav');
+if (item.getAttribute('href') === `#${currentSection}`) {
+item.classList.add('active-nav');
+}
+});
+}
+window.addEventListener('scroll', setActiveNavItem);
+// Back to top button
+const backToTopButton = document.getElementById('back-to-top');
+if (backToTopButton) {
+window.addEventListener('scroll', function() {
+if (window.scrollY > 500) {
+backToTopButton.classList.add('visible');
+} else {
+backToTopButton.classList.remove('visible');
+}
+});
+backToTopButton.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+}
+});
+</script>
+<script id="project-filter-script">
+document.addEventListener('DOMContentLoaded', function() {
+const filterButtons = document.querySelectorAll('.project-filter');
+if (filterButtons.length) {
+filterButtons.forEach(button => {
+button.addEventListener('click', function() {
+// Remove active class from all buttons
+filterButtons.forEach(btn => {
+btn.classList.remove('active');
+btn.classList.remove('bg-primary');
+btn.classList.add('text-gray-300');
+});
+// Add active class to clicked button
+this.classList.add('active');
+this.classList.add('bg-primary');
+this.classList.remove('text-gray-300');
+this.classList.add('text-white');
+// Here you would add filtering logic for projects
+// For now, we'll just simulate the filter effect
+const category = this.textContent.toLowerCase();
+// Animation for filtering (just for visual effect)
+const projectCards = document.querySelectorAll('.project-card');
+projectCards.forEach(card => {
+card.style.opacity = '0.5';
+card.style.transform = 'scale(0.95)';
+setTimeout(() => {
+card.style.opacity = '1';
+card.style.transform = 'scale(1)';
+}, 300);
+});
+});
+});
+}
+});
+</script>
+<script id="contact-form-script">
+document.addEventListener('DOMContentLoaded', function() {
+// The contact form event listener has been removed to allow default submission to Formspree
+});
+</script>
+<script id="custom-cursor-script">
+document.addEventListener('DOMContentLoaded', function() {
+const cursor = document.getElementById('custom-cursor');
+const cursorFollower = document.getElementById('custom-cursor-follower');
+if (cursor && cursorFollower) {
+document.addEventListener('mousemove', function(e) {
+cursor.style.left = e.clientX + 'px';
+cursor.style.top = e.clientY + 'px';
+setTimeout(() => {
+cursorFollower.style.left = e.clientX + 'px';
+cursorFollower.style.top = e.clientY + 'px';
+}, 100);
+});
+document.addEventListener('mousedown', function() {
+cursor.classList.add('active');
+});
+document.addEventListener('mouseup', function() {
+cursor.classList.remove('active');
+});
+// Add hover effect for interactive elements
+const interactiveElements = document.querySelectorAll('a, button, input, textarea, .project-card, .skill-icon, .social-icon');
+interactiveElements.forEach(element => {
+element.addEventListener('mouseenter', function() {
+cursor.classList.add('active');
+});
+element.addEventListener('mouseleave', function() {
+cursor.classList.remove('active');
+});
+});
+}
+});
+</script>
+<script id="cv-download-script">
+document.addEventListener('DOMContentLoaded', function() {
+const downloadBtn = document.getElementById('download-cv-btn');
+const modal = document.getElementById('cv-download-modal');
+const startDownloadBtn = document.getElementById('start-download-btn');
+const closeModalBtn = document.getElementById('close-modal-btn');
+const downloadStart = document.getElementById('download-start');
+const downloadProgress = document.getElementById('download-progress');
+const downloadComplete = document.getElementById('download-complete');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const cvUrl = 'assets/Tinotenda_Mandeya_CV.pdf'; // Update with actual CV file path
+function showModal() {
+modal.classList.remove('hidden');
+document.body.style.overflow = 'hidden';
+}
+function hideModal() {
+modal.classList.add('hidden');
+document.body.style.overflow = '';
+resetModal();
+}
+function resetModal() {
+downloadStart.classList.remove('hidden');
+downloadProgress.classList.add('hidden');
+downloadComplete.classList.add('hidden');
+progressBar.style.width = '0%';
+progressText.textContent = '0%';
+}
+function simulateDownload() {
+downloadStart.classList.add('hidden');
+downloadProgress.classList.remove('hidden');
+let progress = 0;
+const interval = setInterval(() => {
+progress += 5;
+progressBar.style.width = `${progress}%`;
+progressText.textContent = `${progress}%`;
+if (progress >= 100) {
+clearInterval(interval);
+downloadProgress.classList.add('hidden');
+downloadComplete.classList.remove('hidden');
+// Trigger actual file download
+const link = document.createElement('a');
+link.href = cvUrl;
+link.download = 'Tinotenda_Mandeya_CV.pdf';
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
+}
+}, 100);
+}
+downloadBtn.addEventListener('click', (e) => {
+e.preventDefault();
+showModal();
+});
+startDownloadBtn.addEventListener('click', simulateDownload);
+closeModalBtn.addEventListener('click', hideModal);
+modal.addEventListener('click', (e) => {
+if (e.target === modal) {
+hideModal();
+}
+});
+document.addEventListener('keydown', (e) => {
+if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+hideModal();
+}
+});
+});
+</script>
+<script id="skill-animation-script">
+document.addEventListener('DOMContentLoaded', function() {
+// Animate skill bars on scroll
+const skillBars = document.querySelectorAll('.skill-progress-bar');
+function animateSkillBars() {
+skillBars.forEach(bar => {
+const barPosition = bar.getBoundingClientRect().top;
+const screenPosition = window.innerHeight / 1.2;
+if (barPosition < screenPosition) {
+const width = bar.parentElement.previousElementSibling.querySelector('.text-primary').textContent;
+bar.style.width = width;
+}
+});
+}
+// Initial check
+animateSkillBars();
+// Check on scroll
+window.addEventListener('scroll', animateSkillBars);
+});
+</script>
+<div id="demo-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+<div class="bg-gray-900 rounded-lg max-w-4xl w-full mx-4 relative">
+<button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-close-line ri-2x"></i>
+</div>
+</button>
+<div class="p-8">
+<div id="modal-content" class="space-y-6">
+<div class="flex items-center justify-between mb-4">
+<h3 id="modal-title" class="text-2xl font-bold text-white"></h3>
+<div class="flex space-x-2">
+<button id="prev-demo" class="p-2 text-gray-400 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-arrow-left-line"></i>
+</div>
+</button>
+<button id="next-demo" class="p-2 text-gray-400 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div id="demo-preview" class="relative bg-gray-800 rounded-lg overflow-hidden aspect-video">
+<img id="demo-image" class="w-full h-full object-cover" src="" alt="Project Preview">
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<h4 class="text-lg font-semibold text-white mb-2">Key Features</h4>
+<ul id="demo-features" class="list-disc list-inside text-gray-300 space-y-2"></ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold text-white mb-2">Technologies</h4>
+<div id="demo-tech" class="flex flex-wrap gap-2"></div>
+</div>
+</div>
+<p id="demo-description" class="text-gray-300"></p>
+<div class="flex justify-end space-x-4 mt-6">
+<a id="demo-live-link" href="#" target="_blank" class="px-4 py-2 bg-primary text-white rounded-button font-medium hover:bg-opacity-90 transition !rounded-button whitespace-nowrap">Open Live Demo</a>
+<a id="demo-github-link" href="#" target="_blank" class="px-4 py-2 border border-white text-white rounded-button font-medium hover:bg-white hover:bg-opacity-10 transition !rounded-button whitespace-nowrap">View on GitHub</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script id="demo-modal-script">
+document.addEventListener('DOMContentLoaded', function() {
+const modal = document.getElementById('demo-modal');
+const closeModal = document.getElementById('close-modal');
+const modalTitle = document.getElementById('modal-title');
+const demoImage = document.getElementById('demo-image');
+const demoFeatures = document.getElementById('demo-features');
+const demoTech = document.getElementById('demo-tech');
+const demoDescription = document.getElementById('demo-description');
+const demoLiveLink = document.getElementById('demo-live-link');
+const demoGithubLink = document.getElementById('demo-github-link');
+const prevDemo = document.getElementById('prev-demo');
+const nextDemo = document.getElementById('next-demo');
+const projects = [
+{
+title: 'E-commerce Platform',
+image: 'https://readdy.ai/api/search-image?query=modern%20e-commerce%20website%20interface%20showcasing%20products%2C%20shopping%20cart%2C%20and%20checkout%20process%2C%20professional%20UI%20design%20on%20desktop%20screen%2C%20dark%20theme&width=1280&height=720&seq=8&orientation=landscape',
+features: ['User authentication', 'Product catalog', 'Shopping cart', 'Secure checkout', 'Order tracking'],
+technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Redux'],
+description: 'A full-featured e-commerce platform with modern UI, secure payment processing, and comprehensive product management system.',
+liveUrl: '#',
+githubUrl: '#'
+},
+{
+title: 'Student Management App',
+image: 'https://readdy.ai/api/search-image?query=student%20management%20dashboard%20showing%20course%20schedules%2C%20assignments%2C%20and%20progress%20tracking%2C%20modern%20UI%20design%20on%20tablet%20screen%2C%20dark%20theme&width=1280&height=720&seq=9&orientation=landscape',
+features: ['Course management', 'Assignment tracking', 'Schedule planner', 'Grade monitoring', 'Push notifications'],
+technologies: ['Flutter', 'Firebase', 'Dart', 'Cloud Functions', 'Material UI'],
+description: 'A comprehensive student management application designed to help university students organize their academic life effectively.',
+liveUrl: '#',
+githubUrl: '#'
+}
+];
+let currentProjectIndex = 0;
+function updateModalContent(project) {
+modalTitle.textContent = project.title;
+demoImage.src = project.image;
+demoImage.alt = `${project.title} Preview`;
+demoFeatures.innerHTML = project.features
+.map(feature => `<li>${feature}</li>`)
+.join('');
+demoTech.innerHTML = project.technologies
+.map(tech => `<span class="px-2 py-1 bg-gray-700 rounded-full text-sm text-gray-300">${tech}</span>`)
+.join('');
+demoDescription.textContent = project.description;
+demoLiveLink.href = project.liveUrl;
+demoGithubLink.href = project.githubUrl;
+prevDemo.disabled = currentProjectIndex === 0;
+nextDemo.disabled = currentProjectIndex === projects.length - 1;
+}
+document.querySelectorAll('[id^="demo-btn-"]').forEach((button, index) => {
+button.addEventListener('click', () => {
+currentProjectIndex = index;
+updateModalContent(projects[currentProjectIndex]);
+modal.classList.remove('hidden');
+document.body.style.overflow = 'hidden';
+});
+});
+closeModal.addEventListener('click', () => {
+modal.classList.add('hidden');
+document.body.style.overflow = '';
+});
+modal.addEventListener('click', (e) => {
+if (e.target === modal) {
+modal.classList.add('hidden');
+document.body.style.overflow = '';
+}
+});
+prevDemo.addEventListener('click', () => {
+if (currentProjectIndex > 0) {
+currentProjectIndex--;
+updateModalContent(projects[currentProjectIndex]);
+}
+});
+nextDemo.addEventListener('click', () => {
+if (currentProjectIndex < projects.length - 1) {
+currentProjectIndex++;
+updateModalContent(projects[currentProjectIndex]);
+}
+});
+document.addEventListener('keydown', (e) => {
+if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+modal.classList.add('hidden');
+document.body.style.overflow = '';
+    }
+});
+</script>
+</body>
+</html>
